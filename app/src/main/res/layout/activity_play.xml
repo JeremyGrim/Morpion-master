@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/Splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splash"
+
+
+        />
+
+    <ImageView
+        android:id="@+id/logoSplash"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_logo_white"
+
+        />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Play"
+        android:id="@+id/Play"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView4"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginBottom="105px"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textColor="#232c3d"
+        android:background="@drawable/btn_light"
+        android:clickable="true" />
+
+
+</RelativeLayout>
