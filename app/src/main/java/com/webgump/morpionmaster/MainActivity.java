@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if(!part){
                 TransitionManager.beginDelayedTransition(TransitionContainer);
-                result.setText("Joueur 1 à gagner");
+                result.setText("Joueur 1 a gagné");
                 result.setTextColor(getResources().getColor(R.color.j1));
                 result.setVisibility(View.VISIBLE);
                 j1++;
@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             else{
                 TransitionManager.beginDelayedTransition(TransitionContainer);
-                result.setText("Joueur 2 à gagner");
+                result.setText("Joueur 2 a gagné");
                 result.setTextColor(getResources().getColor(R.color.j2));
                 result.setVisibility(View.VISIBLE);
                 j2++;
