@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="#232c3d"
+    android:orientation="vertical"
     android:id="@+id/r">
 
     <LinearLayout
@@ -249,6 +250,14 @@
         android:layout_below="@+id/linearLayout">
 
         <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -285,7 +294,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Joueur 1"
-                    android:id="@+id/textView2"
+                    android:id="@+id/Joueur1"
                     android:textColor="#525f78"
                     android:layout_gravity="center"
                     android:layout_below="@+id/textView"
@@ -320,7 +329,6 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Nul"
-                    android:id="@+id/textView4"
                     android:textColor="#525f78"
                     android:layout_gravity="center"
                     android:layout_centerHorizontal="true"
@@ -357,7 +365,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Joueur 2"
                     android:textColor="#525f78"
-                    android:id="@+id/textView6"
+                    android:id="@+id/Joueur2"
                     android:layout_gravity="center"
                     android:layout_alignTop="@+id/textView4"
                     android:layout_alignParentRight="true"
@@ -404,6 +412,9 @@
         android:textColor="#232c3d"
         android:background="@drawable/btn_light"
         android:clickable="true" />
+
+    </LinearLayout>
+
 
     </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.webgump.morpionmaster;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int j2 = 0;
     private int N = 0;
     ViewGroup TransitionContainer;
+    final String EXTRA_JOUEUR1 = "joueur1";
+    final String EXTRA_JOUEUR2 = "joueur2";
 
 
 
@@ -82,6 +85,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
+        //recupération des joueurs
+
+        Intent intent = getIntent();
+        TextView joueur1Display = (TextView) findViewById(R.id.Joueur1);
+        TextView joueur2Display = (TextView) findViewById(R.id.Joueur2);
+
+        if (intent != null) {
+            joueur1Display.setText(intent.getStringExtra(EXTRA_JOUEUR1));
+            joueur2Display.setText(intent.getStringExtra(EXTRA_JOUEUR2));
+        }
 
     }
 
