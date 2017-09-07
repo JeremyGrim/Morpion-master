@@ -60,16 +60,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         h = (Button)findViewById(R.id.h);
         i = (Button)findViewById(R.id.i);
 
-        //on insère tout les button dans un tableau
+        //Inserer les button dans un tableau
         bArray = new Button[]{a,b,c,d,e,f,g,h,i};
 
-        //on asscocie le clic a chaque bouton
+        //Ajouter le clic a chaque bouton
 
         for (Button b : bArray){
 
             b.setOnClickListener(this);
 
         }
+
+        //recupération des joueurs
+
+        Intent intent = getIntent();
+        TextView joueur1Display = (TextView) findViewById(R.id.Joueur1);
+        TextView joueur2Display = (TextView) findViewById(R.id.Joueur2);
+
+        if (intent != null) {
+            joueur1Display.setText(intent.getStringExtra(EXTRA_JOUEUR1));
+            joueur2Display.setText(intent.getStringExtra(EXTRA_JOUEUR2));
+        }
+
+
+
+        //relancer le jeu
 
         rejouer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,40 +100,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        //recupération des joueurs
-
-        Intent intent = getIntent();
-        TextView joueur1Display = (TextView) findViewById(R.id.Joueur1);
-        TextView joueur2Display = (TextView) findViewById(R.id.Joueur2);
-
-        if (intent != null) {
-            joueur1Display.setText(intent.getStringExtra(EXTRA_JOUEUR1));
-            joueur2Display.setText(intent.getStringExtra(EXTRA_JOUEUR2));
-        }
-
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
 
     @Override
@@ -137,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             b.setBackgroundResource(R.drawable.croix_animation);
             b.setText("x");
             AnimationDrawable frameAnimation = (AnimationDrawable) b.getBackground();
-            // Start the animation (looped playback by default).
             frameAnimation.start();
 
         }
@@ -145,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             b.setBackgroundResource(R.drawable.round_animation);
             b.setText("o");
             AnimationDrawable frameAnimation = (AnimationDrawable) b.getBackground();
-            // Start the animation (looped playback by default).
             frameAnimation.start();
         }
 
@@ -208,14 +189,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(gagne){
             TransitionManager.beginDelayedTransition(TransitionContainer);
-            rejouer.setVisibility(View.VISIBLE);
+
+            Intent intent = getIntent();
+
 
 
             if(!part){
                 TransitionManager.beginDelayedTransition(TransitionContainer);
-                result.setText("Joueur 1 a gagné");
+                if (intent != null) {
+                    result.setText(intent.getStringExtra(EXTRA_JOUEUR1) + " à gagsné");
+                }
                 result.setTextColor(getResources().getColor(R.color.j1));
                 result.setVisibility(View.VISIBLE);
+                rejouer.setVisibility(View.VISIBLE);
                 j1++;
                 TextView J1 = (TextView) findViewById(R.id.j1);
                 J1.setText(Integer.toString(j1));
@@ -223,10 +209,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
             else{
+                if (intent != null) {
+                    result.setText(intent.getStringExtra(EXTRA_JOUEUR2) + " à gagné");
+                }
                 TransitionManager.beginDelayedTransition(TransitionContainer);
-                result.setText("Joueur 2 a gagné");
                 result.setTextColor(getResources().getColor(R.color.j2));
                 result.setVisibility(View.VISIBLE);
+                rejouer.setVisibility(View.VISIBLE);
                 j2++;
                 TextView J2 = (TextView) findViewById(R.id.j2);
                 J2.setText(Integer.toString(j2));
@@ -241,6 +230,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             result.setText("Match Null");
             result.setTextColor(getResources().getColor(R.color.nul));
             result.setVisibility(View.VISIBLE);
+            rejouer.setVisibility(View.VISIBLE);
             N++;
             TextView nul = (TextView) findViewById(R.id.nul);
             nul.setText(Integer.toString(N));
