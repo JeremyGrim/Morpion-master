@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(!part){
                 TransitionManager.beginDelayedTransition(TransitionContainer);
                 if (intent != null) {
-                    result.setText(intent.getStringExtra(EXTRA_JOUEUR1) + " à gagsné");
+                    result.setText(intent.getStringExtra(EXTRA_JOUEUR1) + " à gagné");
                 }
                 result.setTextColor(getResources().getColor(R.color.j1));
                 result.setVisibility(View.VISIBLE);
