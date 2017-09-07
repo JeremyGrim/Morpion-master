@@ -2,7 +2,6 @@ package com.webgump.morpionmaster;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Slide;
@@ -15,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.TableRow.LayoutParams;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -132,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void buttonClicked(Button b){
 
+
         if(part){
 
             b.setBackgroundResource(R.drawable.croix_animation);
@@ -151,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         part_count++;
 
-            /*b.setBackgroundColor(Color.YELLOW);*/
         b.setClickable(false);
         part=!part;
 
@@ -210,6 +209,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(gagne){
             TransitionManager.beginDelayedTransition(TransitionContainer);
             rejouer.setVisibility(View.VISIBLE);
+
 
             if(!part){
                 TransitionManager.beginDelayedTransition(TransitionContainer);
