@@ -55,7 +55,7 @@ public class Play extends AppCompatActivity {
                 play.setText("Jouer anonymous");
             }
         });
-        
+
         play = (Button) TransitionContainer.findViewById(R.id.Play);
         subscribe = (Button) TransitionContainer.findViewById(R.id.subscribe);
         subscribe.setOnClickListener(new View.OnClickListener() {
