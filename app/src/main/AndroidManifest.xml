@@ -22,7 +22,8 @@
 
         <!-- Main activity -->
         <activity android:name=".MainActivity" />
-        <activity android:name=".Play"></activity>
+        <activity android:name=".Play" />
+        <activity android:name=".IaActivity"></activity>
     </application>
 
 </manifest>

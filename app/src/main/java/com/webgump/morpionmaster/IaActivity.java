@@ -1,6 +1,5 @@
 package com.webgump.morpionmaster;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,19 +7,15 @@ import android.os.Bundle;
 import android.transition.Slide;
 import android.transition.TransitionManager;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.TableRow.LayoutParams;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class IaActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView  result;
+    private TextView result;
     private Button a, b, c, d, e, f, g, h, i, rejouer;
     private Button[] bArray;
     boolean part = true;
@@ -31,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int N = 0;
     ViewGroup TransitionContainer;
     private String EXTRA_JOUEUR1 = "joueur1";
-    private String EXTRA_JOUEUR2 = "joueur2";
+    private String EXTRA_JOUEUR2 = "IA Master";
 
 
 
@@ -82,8 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (intent != null) {
             joueur1Display.setText(intent.getStringExtra(EXTRA_JOUEUR1));
-            joueur2Display.setText(intent.getStringExtra(EXTRA_JOUEUR2));
-            EXTRA_JOUEUR2 = intent.getStringExtra(EXTRA_JOUEUR2);
+            joueur2Display.setText(EXTRA_JOUEUR2);
         }
 
         //relancer le jeu
@@ -102,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        
+
 
     }
 
@@ -118,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void buttonClicked(Button b){
 
-
             if (part) {
 
                 b.setBackgroundResource(R.drawable.croix_animation);
@@ -127,11 +120,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 frameAnimation.start();
 
             } else {
-                b.setBackgroundResource(R.drawable.round_animation);
-                b.setText("o");
-                AnimationDrawable frameAnimation = (AnimationDrawable) b.getBackground();
-                frameAnimation.start();
+                IaPlayer ia = new IaPlayer();
+                ia.IaPlay(b);
+
             }
+
 
 
         part_count++;
@@ -214,8 +207,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             else{
                 if (intent != null) {
-                    String patrice = EXTRA_JOUEUR2;
-                    result.setText( patrice + " à gagné");
+                    //String patrice = EXTRA_JOUEUR2;
+                    //result.setText( patrice + " à gagné");
+                    result.setText(EXTRA_JOUEUR2 + " à gagné");
                 }
 
                 TransitionManager.beginDelayedTransition(TransitionContainer);
@@ -266,5 +260,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-
 }

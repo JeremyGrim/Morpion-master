@@ -17,10 +17,12 @@ public class Play extends AppCompatActivity {
 
     final String EXTRA_JOUEUR1 = "joueur1";
     final String EXTRA_JOUEUR2 = "joueur2";
+    final Boolean EXTRA_IAACTIVITY = true;
     ViewGroup TransitionContainer;
-    private Button subscribe, play;
+    private Button subscribe, play, playIa, play2;
     private EditText name1, name2;
     private TextView annuler;
+
 
 
 
@@ -41,8 +43,8 @@ public class Play extends AppCompatActivity {
 
         name1 = (EditText) TransitionContainer.findViewById(R.id.Joueur1);
         name2 = (EditText) TransitionContainer.findViewById(R.id.Joueur2);
-        annuler = (Button) TransitionContainer.findViewById(R.id.annuler);
 
+        annuler = (Button) TransitionContainer.findViewById(R.id.annuler);
         annuler.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -52,22 +54,41 @@ public class Play extends AppCompatActivity {
                 name2.setVisibility(View.GONE);
                 annuler.setVisibility(View.GONE);
                 subscribe.setVisibility(View.VISIBLE);
-                play.setText("Jouer anonymous");
+                play.setVisibility(View.GONE);
+                playIa.setVisibility(View.VISIBLE);
+                play2.setVisibility(View.GONE);
             }
         });
 
-        play = (Button) TransitionContainer.findViewById(R.id.Play);
         subscribe = (Button) TransitionContainer.findViewById(R.id.subscribe);
         subscribe.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 TransitionManager.beginDelayedTransition(TransitionContainer);
+                playIa.setVisibility(View.GONE);
                 name1.setVisibility(View.VISIBLE);
                 name2.setVisibility(View.VISIBLE);
                 annuler.setVisibility(View.VISIBLE);
                 subscribe.setVisibility(View.GONE);
+                play.setVisibility(View.VISIBLE);
                 play.setText("Enregistrer les joueurs");
+            }
+        });
+
+        playIa = (Button) TransitionContainer.findViewById(R.id.PlayIa);
+        playIa.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                TransitionManager.beginDelayedTransition(TransitionContainer);
+                name1.setVisibility(View.VISIBLE);
+                annuler.setVisibility(View.VISIBLE);
+                subscribe.setVisibility(View.GONE);
+                playIa.setVisibility(View.GONE);
+                play.setVisibility(View.GONE);
+                play2.setVisibility(View.VISIBLE);
+                play.setText("Jouer");
             }
         });
 
@@ -77,23 +98,54 @@ public class Play extends AppCompatActivity {
 
 
 
-        final Button connexion = (Button) findViewById(R.id.Play);
-        connexion.setOnClickListener(new View.OnClickListener() {
+
+
+        play = (Button) TransitionContainer.findViewById(R.id.Play);
+        play.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Play.this, MainActivity.class);
                 Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(Play.this).toBundle();
+
+
                 if (joueur1.getText().toString().isEmpty()){
                     intent.putExtra(EXTRA_JOUEUR1, "Joueur 1");
                 } else {
                     intent.putExtra(EXTRA_JOUEUR1, joueur1.getText().toString());
                 }
-                if (joueur1.getText().toString().isEmpty()){
+
+
+                if (joueur2.getText().toString().isEmpty() && joueur2.getVisibility()== View.VISIBLE){
                     intent.putExtra(EXTRA_JOUEUR2, "Joueur 2");
+                } else if(joueur2.getText().toString().isEmpty() && joueur2.getVisibility()== View.GONE) {
+                    intent.putExtra(EXTRA_JOUEUR2, "IA Power");
+                    intent.putExtra("EXTRA_IAACTIVITY", EXTRA_IAACTIVITY);
+
                 } else {
                     intent.putExtra(EXTRA_JOUEUR2, joueur2.getText().toString());
                 }
+
+                startActivity(intent, bundle);
+            }
+        });
+
+        play2 = (Button) TransitionContainer.findViewById(R.id.Play2);
+        play2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Play.this, IaActivity.class);
+                Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(Play.this).toBundle();
+
+
+                if (joueur1.getText().toString().isEmpty()){
+                    intent.putExtra(EXTRA_JOUEUR1, "Joueur 1");
+                } else {
+                    intent.putExtra(EXTRA_JOUEUR1, joueur1.getText().toString());
+                }
+
+
                 startActivity(intent, bundle);
             }
         });
